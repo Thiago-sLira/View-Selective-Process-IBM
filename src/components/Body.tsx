@@ -21,7 +21,11 @@ function Body() {
           codCandidato: Number(inputsValue.id),
         };
         const response = await axios.post(url, dataPost);
-        setDataValue(response.data);
+        if (typeof response.data === 'number') {
+          setDataValue(`ID do candidato: ${response.data}`);
+        } else {
+          setDataValue(response.data);
+        }
       } catch (error: any) {
         setDataValue(error.response.data);
       }
