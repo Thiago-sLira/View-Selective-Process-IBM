@@ -1,0 +1,6 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Define a altura da div como 100% da altura da viewport */
+}

@@ -8,11 +8,11 @@ function App() {
   // const [count, setCount] = useState(0);
 
   return (
-    <div>
+    <body className="root">
       <Header />
       <Body />
       <Footer />
-    </div>
+    </body>
   );
 }
 
