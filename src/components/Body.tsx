@@ -1,15 +1,83 @@
 import { useState } from 'react';
 
+import axios from 'axios';
+
 function Body() {
   const [inputsValue, setInputsValue] = useState({
     name: '',
     id: 0,
   });
-  // const [dataValue, setDataValue] = useState('');
+  const [dataValue, setDataValue] = useState('');
+  const [errorValue, setErrorValue] = useState('');
 
-  const handleButtonClick = (event: any) => {
-    console.log(inputsValue);
-    console.log(event.target.name);
+  const requisitionAxios = async (
+    url: string,
+    method: string,
+  ) => {
+    if (method === 'POST') {
+      try {
+        const response = await axios.post(url, {
+          nome: inputsValue.name,
+        });
+        setDataValue(response.data);
+        console.log(response.data);
+      } catch (error: any) {
+        setErrorValue(error.response.data);
+        console.error(errorValue);
+      }
+    } else {
+      try {
+        const response = await axios.get(url);
+        setDataValue(response.data);
+        console.log(response.data);
+      } catch (error: any) {
+        setErrorValue(error.response.data);
+        console.error(errorValue);
+      }
+    }
+  };
+
+  const handleButtonClick = async (event: any) => {
+    switch (event.target.name) {
+      case 'start':
+        requisitionAxios(
+          'http://localhost:8080/api/v1/hiring/start',
+          'POST',
+        );
+        break;
+      case 'schedule':
+        requisitionAxios(
+          'http://localhost:8080/api/v1/hiring/schedule',
+          'POST',
+        );
+        break;
+      case 'disqualify':
+        requisitionAxios(
+          'http://localhost:8080/api/v1/hiring/disqualify',
+          'POST',
+        );
+        break;
+      case 'approve':
+        requisitionAxios(
+          'http://localhost:8080/api/v1/hiring/approve',
+          'POST',
+        );
+        break;
+      case 'status/candidate':
+        requisitionAxios(
+          `http://localhost:8080/api/v1/hiring/status/candidate/${inputsValue.id}`,
+          'GET',
+        );
+        break;
+      case 'approved':
+        requisitionAxios(
+          'http://localhost:8080/api/v1/hiring/approved',
+          'GET',
+        );
+        break;
+      default:
+        break;
+    }
   };
 
   const handleInputChange = (event: any) => {
@@ -78,6 +146,11 @@ function Body() {
         >
           Ver Aprovados
         </button>
+      </section>
+      <section>
+        <h2>Resposta</h2>
+        <p>{ dataValue }</p>
+        { errorValue && <p>{ errorValue }</p>}
       </section>
     </div>
   );
