@@ -1,6 +1,55 @@
-.root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Define a altura da div como 100% da altura da viewport */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+section {
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.initiate button,
+.actions button,
+.data button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.initiate button:disabled,
+.data button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.input-id-section input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.response ul {
+  padding-left: 20px;
+}
+
+.response li {
+  margin-bottom: 5px;
+}
+
+.response p {
+  color: #333;
 }
